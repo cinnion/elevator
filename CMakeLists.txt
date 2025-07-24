@@ -1,10 +1,18 @@
+cmake_minimum_required(VERSION 3.26)
+project(elevator LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+
 # Enable testing for your project
 enable_testing()
+
+find_package(jsoncpp REQUIRED)
 
 # Add the GTest submodule
 # EXCLUDE_FROM_ALL prevents GTest from being built by default when building the main project,
 # but it will be built when building targets that depend on it (like your tests).
 add_subdirectory(extern/googletest EXCLUDE_FROM_ALL)
+add_subdirectory(lib)
 
 # Optionally, if you want to explicitly manage GTest build options, you can set them before add_subdirectory
 # set(BUILD_GMOCK OFF CACHE BOOL "Build Google Mock" FORCE)
@@ -15,11 +23,16 @@ add_subdirectory(extern/googletest EXCLUDE_FROM_ALL)
 include(GoogleTest)
 
 # Add your test executable
-add_executable(my_tests tests/my_test_file.cpp)
+add_executable(my_tests tests/FloorTest.cpp
+        includes/ElevatorFloor.h
+        lib/ElevatorFloor.cpp)
+
+target_include_directories(my_tests PUBLIC ../includes)
 
 # Link your test executable against GTest libraries
 # Use GTest::gtest_main for a pre-built main function, or GTest::gtest if you provide your own.
 target_link_libraries(my_tests GTest::gtest_main)
+target_link_libraries(my_tests ElevatorLibrary)
 
 # Discover tests using the GoogleTest module
 gtest_discover_tests(my_tests)
