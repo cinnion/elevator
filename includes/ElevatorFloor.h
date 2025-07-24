@@ -15,7 +15,7 @@ public:
     std::string                 getLabel();
     int                         getHeight();
 
-    bool                        is_pressed();
+    bool                        isPressed();
     void                        press();
     void                        stop();
 
@@ -24,9 +24,5 @@ protected:
     std::string                 label;
     std::atomic_bool            pressed{false};
 };
-
-
-
-
 
 #endif //FLOOR_H

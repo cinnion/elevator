@@ -16,3 +16,7 @@ int ElevatorFloor::getHeight() {
     return this->height;
 }
 
+bool ElevatorFloor::isPressed() {
+    return this->pressed.load((std::memory_order_acquire));
+}
+
