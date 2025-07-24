@@ -1,0 +1,38 @@
+# Enable testing for your project
+enable_testing()
+
+# Add the GTest submodule
+# EXCLUDE_FROM_ALL prevents GTest from being built by default when building the main project,
+# but it will be built when building targets that depend on it (like your tests).
+add_subdirectory(extern/googletest EXCLUDE_FROM_ALL)
+
+# Optionally, if you want to explicitly manage GTest build options, you can set them before add_subdirectory
+# set(BUILD_GMOCK OFF CACHE BOOL "Build Google Mock" FORCE)
+# set(BUILD_GTEST OFF CACHE BOOL "Build Google Test" FORCE)
+# set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build shared libraries" FORCE)
+
+# Include the GoogleTest CMake module for test discovery
+include(GoogleTest)
+
+# Add your test executable
+add_executable(my_tests tests/my_test_file.cpp)
+
+# Link your test executable against GTest libraries
+# Use GTest::gtest_main for a pre-built main function, or GTest::gtest if you provide your own.
+target_link_libraries(my_tests GTest::gtest_main)
+
+# Discover tests using the GoogleTest module
+gtest_discover_tests(my_tests)
+
+# Mark GTest-related build options as advanced to keep the CMake cache clean
+mark_as_advanced(
+    BUILD_GMOCK
+    BUILD_GTEST
+    BUILD_SHARED_LIBS
+    gmock_build_tests
+    gtest_build_samples
+    gtest_build_tests
+    gtest_disable_pthreads
+    gtest_force_shared_crt
+    gtest_hide_internal_symbols
+)
