@@ -25,7 +25,9 @@ include(GoogleTest)
 # Add your test executable
 add_executable(my_tests tests/FloorTest.cpp
         includes/ElevatorFloor.h
-        lib/ElevatorFloor.cpp)
+        lib/ElevatorFloor.cpp
+        includes/Building.h
+        tests/BuildingTest.cpp)
 
 target_include_directories(my_tests PUBLIC ../includes)
 
@@ -33,6 +35,7 @@ target_include_directories(my_tests PUBLIC ../includes)
 # Use GTest::gtest_main for a pre-built main function, or GTest::gtest if you provide your own.
 target_link_libraries(my_tests GTest::gtest_main)
 target_link_libraries(my_tests ElevatorLibrary)
+target_link_libraries(my_tests jsoncpp_lib)
 
 # Discover tests using the GoogleTest module
 gtest_discover_tests(my_tests)
