@@ -23,3 +23,21 @@ TEST_F(FloorFixture, testHeight) {
 TEST_F(FloorFixture, testFloorIsNotPressed) {
     EXPECT_FALSE(floor.isPressed());
 }
+
+TEST_F(FloorFixture, testPressMakesTrue) {
+    // Act
+    floor.press();
+
+    // Assert
+    EXPECT_TRUE(floor.isPressed());
+}
+
+TEST_F(FloorFixture, testStopMakeFalse) {
+    // Act
+    floor.press();
+    floor.stop();
+
+    // Assert
+    EXPECT_FALSE(floor.isPressed());
+}
+

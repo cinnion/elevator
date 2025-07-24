@@ -20,3 +20,11 @@ bool ElevatorFloor::isPressed() {
     return this->pressed.load((std::memory_order_acquire));
 }
 
+void ElevatorFloor::press() {
+    return this->pressed.store(true, std::memory_order_release);
+}
+
+void ElevatorFloor::stop() {
+    return this->pressed.store(false, std::memory_order_release);
+}
+
