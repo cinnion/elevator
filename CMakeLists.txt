@@ -23,10 +23,13 @@ add_subdirectory(lib)
 include(GoogleTest)
 
 # Add your test executable
-add_executable(my_tests tests/ElevatorFloorTest.cpp
-        lib/ElevatorFloor.cpp
+add_executable(my_tests
+        tests/ElevatorFloorTest.cpp
         tests/BuildingTest.cpp
         tests/ButtonTest.cpp
+        lib/Button.cpp
+        lib/Building.cpp
+        lib/ElevatorFloor.cpp
 )
 
 include_directories(my_tests PUBLIC ../include)
@@ -37,8 +40,8 @@ target_link_libraries(my_tests GTest::gtest_main)
 target_link_libraries(my_tests ElevatorLibrary)
 target_link_libraries(my_tests jsoncpp_lib)
 
-target_compile_options(my_tests PRIVATE -coverage)
-target_link_options(my_tests PRIVATE -coverage)
+target_compile_options(my_tests PRIVATE -coverage -fprofile-arcs -ftest-coverage)
+target_link_options(my_tests PRIVATE -coverage -fprofile-arcs -ftest-coverage)
 
 # Discover tests using the GoogleTest module
 gtest_discover_tests(my_tests)
