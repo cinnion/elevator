@@ -2,6 +2,7 @@
 // Created by cinnion on 7/23/25.
 //
 #include "ElevatorFloor.h"
+#include "Button.h"
 
 ElevatorFloor::ElevatorFloor(std::string label, int height) {
     this->label = label;
@@ -17,14 +18,13 @@ int ElevatorFloor::getHeight() {
 }
 
 bool ElevatorFloor::isPressed() {
-    return this->pressed.load((std::memory_order_acquire));
+    return this->button.isPressed();
 }
 
 void ElevatorFloor::press() {
-    return this->pressed.store(true, std::memory_order_release);
+    this->button.press();
 }
 
 void ElevatorFloor::stop() {
-    return this->pressed.store(false, std::memory_order_release);
+    this->button.clear();
 }
-

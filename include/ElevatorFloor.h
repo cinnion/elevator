@@ -6,7 +6,8 @@
 #define FLOOR_H
 
 #include <string>
-#include <atomic>
+
+#include "Button.h"
 
 class ElevatorFloor {
 public:
@@ -22,7 +23,7 @@ public:
 protected:
     int                         height;
     std::string                 label;
-    std::atomic_bool            pressed{false};
+    Button                      button;
 };
 
 #endif //FLOOR_H
