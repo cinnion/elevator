@@ -7,7 +7,7 @@
 
 #include <gtest/gtest.h>
 
-#include "../includes/Building.h"
+#include "Building.h"
 
 class BuildingFixture : public ::testing::Test {
 protected:

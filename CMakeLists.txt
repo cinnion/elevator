@@ -24,12 +24,12 @@ include(GoogleTest)
 
 # Add your test executable
 add_executable(my_tests tests/FloorTest.cpp
-        includes/ElevatorFloor.h
+        include/ElevatorFloor.h
         lib/ElevatorFloor.cpp
-        includes/Building.h
+        include/Building.h
         tests/BuildingTest.cpp)
 
-target_include_directories(my_tests PUBLIC ../includes)
+include_directories(my_tests PUBLIC ../include)
 
 # Link your test executable against GTest libraries
 # Use GTest::gtest_main for a pre-built main function, or GTest::gtest if you provide your own.

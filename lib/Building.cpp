@@ -1,7 +1,7 @@
 //
 // Created by cinnion on 7/24/25.
 //
-#include "../includes/Building.h"
+#include "Building.h"
 
 Building::Building(Json::Value &floor_json) {
     Json::Value::Members members = floor_json.getMemberNames();

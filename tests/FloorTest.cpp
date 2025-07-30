@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "../includes/ElevatorFloor.h"
+#include "ElevatorFloor.h"
 
 class FloorFixture : public ::testing::Test {
 protected:
